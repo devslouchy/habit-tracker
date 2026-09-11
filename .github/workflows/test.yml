@@ -68,4 +68,4 @@ jobs:
           image-ref: 'habit-tracker:latest'
           format: 'table'
           exit-code: '1'
-          severity: 'HIGH, CRITICAL'
+          severity: ['HIGH', 'CRITICAL']
