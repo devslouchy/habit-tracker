@@ -23,6 +23,7 @@ jobs:
               run: python -m pytest
 
     docker-build:
+      needs: test
       runs-on: ubuntu-latest
       steps:
       - name: Check out repository
