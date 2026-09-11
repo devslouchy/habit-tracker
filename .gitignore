@@ -1,0 +1,15 @@
+# Python
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# IDEs
+.idea/
+.vscode/
+
+# OS_Files
+.DS_Store
+
+# Local database
+*.db
