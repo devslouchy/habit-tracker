@@ -22,6 +22,19 @@ jobs:
             - name: Run tests
               run: python -m pytest
 
+    secret-scan:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     docker-build:
       needs: test
       runs-on: ubuntu-latest
