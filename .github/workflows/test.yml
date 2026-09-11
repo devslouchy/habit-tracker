@@ -61,3 +61,11 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t habit-tracker . 
+
+      - name: Scan Docker image
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          image-ref: 'habit-tracker:latest'
+          format: 'table'
+          exit-code: '1'
+          severity: 'HIGH, CRITICAL'
