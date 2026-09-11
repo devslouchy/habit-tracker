@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    dependecy-scan:
+    dependency-scan:
       runs-on: ubuntu-latest
       steps:
       - name: Check out repository
