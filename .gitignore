@@ -13,3 +13,4 @@ __pycache__/
 
 # Local database
 *.db
+data/

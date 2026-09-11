@@ -2,7 +2,7 @@ from database import get_habits_db, add_habit_db, complete_habit_db, delete_habi
 import sqlite3
 
 
-con = sqlite3.connect("habits.db")
+con = sqlite3.connect("data/habits.db")
 
 initiate_db(con)
 
@@ -23,13 +23,13 @@ def main_menu() :
 		selection = input("Choose an option :").strip()
 		if selection == "1" : 
 			habit = input("What is the new habit? : ").strip()
-			add_habit_db(habit)
+			add_habit_db(con, habit)
 		elif selection == "2" : 
 			completed = input("Which habit would you like to complete? : ").strip()
-			complete_habit_db(completed)
+			complete_habit_db(con, completed)
 		elif selection == "3" :
 			delete = input("Which habit would you like to delete? : ").strip()
-			delete_habit_db(delete)
+			delete_habit_db(con, delete)
 		elif selection == "4" :
 			print_habits()
 		elif selection == "5" :
@@ -42,7 +42,7 @@ def main_menu() :
 		
 
 def print_stats():
-	(percentage, total, completed) = calc_stats_db()
+	(percentage, total, completed) = calc_stats_db(con)
 	if total == 0:
 		print("You have no habits to view statistics on.")
 	else : 
@@ -51,7 +51,7 @@ def print_stats():
 		print("The percentage of complete habits are : " + str(percentage) + "%")
 
 def print_habits():
-	for result in get_completed_db() :
+	for result in get_completed_db(con) :
 		if result[1] is None :
 			print(result[0] + "-> Incomplete")
 		else : 
