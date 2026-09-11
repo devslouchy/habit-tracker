@@ -1,0 +1,7 @@
+services:
+  habit-tracker:
+    build: .
+    volumes:
+      - ./data:/app/data
+    stdin_open: true
+    tty: true
