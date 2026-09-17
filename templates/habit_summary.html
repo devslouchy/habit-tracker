@@ -36,5 +36,31 @@
             </tr>
         {% endfor %}      
     </table>  
-
+    <div class="crud_buttons">
+        <form action="/add" method="post">
+            <label for="name">Add Habit</label>
+            <input type="text" id="name" name="name">
+            <input type="submit" value="Submit">
+        </form>
+        <form action="/delete" method="post">
+            <label for="delete_select">Delete Habit</label>
+            <select id="delete_select" name="name">
+                <option value="">--Please Select a habit--</option>
+                {% for habit in habits %}
+                    <option value="{{habit}}">{{habit}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+        <form action="/complete" method="post">
+            <label for="complete_select">Complete Habit</label>
+            <select id="complete_select" name="name">
+                <option value="">--Please Select a habit--</option>
+                {% for habit in habits %}
+                    <option value="{{habit}}">{{habit}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
