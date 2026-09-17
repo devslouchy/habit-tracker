@@ -1,0 +1,40 @@
+<head>
+    <link href="{{ url_for('static', path='styles.css') }}" rel="stylesheet">
+    <title>Weekly Habit Summary</title>
+</head>
+<body>
+    <h1>Weekly Habit Summary</h1>
+
+    <table>
+        <tr>
+            <td>
+                Habits
+            </td>
+            {% for date in dates %}
+                <td>
+                    {{date}}
+                </td>
+            {% endfor %}
+        </tr>
+        {%for habit in habits%}
+            <tr>
+                <td>
+                    {{habit}}
+                </td>
+                    {%for value in habits[habit]%}
+                    
+                        {% if value %}
+                        <td class = "completed">
+                        </td>
+                        {% else %}
+                        <td class = "incomplete">
+                        </td>
+                        {% endif %}
+                    
+                    {% endfor %}
+                
+            </tr>
+        {% endfor %}      
+    </table>  
+
+</body>

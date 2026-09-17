@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 
 
 
@@ -78,4 +79,46 @@ def calc_stats_db(connection):
      else : 
          percentage = round(completed/total*100, 2)
          return percentage, total, completed
-     
+
+
+def get_all_completed_db(connection):
+    cur = connection.cursor()
+    cur.execute("SELECT name, completed.date FROM habits LEFT JOIN completed ON habits.ID = completed.habitID AND completed.date BETWEEN date('now', '-6 days') AND date('now')")
+    result = cur.fetchall()
+    return result
+
+
+def get_test_db(connection):
+    cur = connection.cursor()
+    cur.execute("SELECT name, completed.date FROM habits LEFT JOIN completed ON habits.ID = completed.habitID AND completed.date BETWEEN date('now', '-6 days') AND date('now')")
+    result = cur.fetchall()
+    return result
+
+def week_view_db(connection):
+    cur = connection.cursor()
+    cur.execute("SELECT name FROM habits")
+    results = cur.fetchall()
+    dic = {}
+    for result in results:
+        dic.update({result[0] : [False,False,False,False,False,False,False]})
+
+    dates = []
+    today = datetime.date.today()
+    for n in range(0,7):
+        x = datetime.timedelta(days = n)
+        dates.append(today - x)
+    completed = get_all_completed_db(connection)
+
+    for row in completed:
+        if row[1] is not None:
+            habit = row[0]
+            i = dates.index(datetime.date.fromisoformat(row[1]))
+            dic[habit][i] = True
+    date_use = []
+    for date in dates:
+        date_use.append(date.strftime("%a %d"))
+
+
+    return dic, date_use
+    
+    
