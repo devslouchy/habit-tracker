@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from database import get_completed_db, get_test_db, week_view_db
+from database import get_completed_db, week_view_db
 import sqlite3
 
 app = FastAPI()
@@ -20,12 +20,6 @@ def get_completed():
     con.close()
     return result
 
-@app.get("/testing")
-def testing():
-    con = sqlite3.connect("data/habits.db")
-    result = get_test_db(con)
-    con.close()
-    return result
 
 @app.get("/summary")
 def summary():
