@@ -1,4 +1,4 @@
-from database import get_habits_db, add_habit_db, complete_habit_db, delete_habit_db, calc_stats_db, get_completed_db, initiate_db, get_all_completed_db
+from database import get_habits_db, add_habit_db, complete_habit_db, delete_habit_db, calc_stats_db, get_completed_db, initiate_db
 import sqlite3
 
 
@@ -37,8 +37,6 @@ def main_menu() :
 		elif selection == "6" : 
 			print("Thank you for using the Habit Tracker, goodbye!")
 			running = False
-		elif selection == "7":
-			print(str(get_all_completed_db(con)))
 		else : 
 			print("Please enter a valid option from the menu")
 		

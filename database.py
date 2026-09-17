@@ -87,13 +87,6 @@ def get_all_completed_db(connection):
     result = cur.fetchall()
     return result
 
-
-def get_test_db(connection):
-    cur = connection.cursor()
-    cur.execute("SELECT name, completed.date FROM habits LEFT JOIN completed ON habits.ID = completed.habitID AND completed.date BETWEEN date('now', '-6 days') AND date('now')")
-    result = cur.fetchall()
-    return result
-
 def week_view_db(connection):
     cur = connection.cursor()
     cur.execute("SELECT name FROM habits")
