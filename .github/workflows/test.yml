@@ -70,3 +70,15 @@ jobs:
           exit-code: '1'
           severity: 'HIGH,CRITICAL'
           ignore-unfixed: true
+
+
+      runner-test:
+        needs: docker-build
+        runs-on: self-hosted
+        steps:
+          - name: Confirm self-hosted runner
+            run: |
+              echo "Hello from the self-hosted runner"
+              hostname
+              whoami
+              pwd
