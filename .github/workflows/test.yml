@@ -72,13 +72,16 @@ jobs:
           ignore-unfixed: true
 
 
-    runner-test:
+    deploy:
       needs: docker-build
       runs-on: self-hosted
       steps:
-        - name: Confirm self-hosted runner
+        - name: Update application
           run: |
-            echo "Hello from the self-hosted runner"
-            hostname
-            whoami
-            pwd
+            cd /home/devslouchy/projects/habit-tracker
+            git pull
+            
+        - name: Deploy application
+          run: |
+            cd /home/devslouchy/projects/habit-tracker
+            docker compose up -d --build
