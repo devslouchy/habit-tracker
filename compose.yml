@@ -1,6 +1,7 @@
 services:
   habit-tracker:
     build: .
+    restart: unless-stopped
     volumes:
       - ./data:/app/data
     ports:
