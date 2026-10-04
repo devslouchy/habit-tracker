@@ -78,11 +78,12 @@ jobs:
       steps:
         - name: Update application
           run: |
-            cd /home/devslouchy/projects/habit-tracker
+            cd /home/devslouchy/deploy/habit-tracker
             git fetch origin
             git checkout --detach ${{ github.sha }}
             
         - name: Deploy application
           run: |
-            cd /home/devslouchy/projects/habit-tracker
+            cd /home/devslouchy/deploy/habit-tracker
             docker compose up -d --build
+
